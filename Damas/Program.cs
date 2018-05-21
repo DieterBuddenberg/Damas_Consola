@@ -11,9 +11,10 @@ namespace Damas
     {
         static void Main(string[] args)
         {
+            
             Program Damas = new Program();
             Ficha[] fichas;
-            Jugador [] jugadores = new Jugador[]{new Jugador("Blanco","#FFFFFF"),new Jugador("Rojo","#8B0000") };
+            Jugador [] jugadores = new Jugador[]{new Jugador("Blanco",15),new Jugador("Rojo",4) };
             Tablero tablero;
             Partida partida;
             switch (Damas.Menu())
@@ -41,6 +42,9 @@ namespace Damas
                     tablero = new Tablero(dimX, dimY, fichas);
                     partida = new Partida(tablero, jugadores, estado);
                     partida.Iniciar();
+                    while (partida.Estado) {
+                        partida.ContinuarPartida();
+                    }
 
                     break;
                 case 2:
@@ -49,6 +53,7 @@ namespace Damas
                     break;
             }
         }
+        //--------------menu--------------
         public int Menu() {
             int seleccion = -1;
             string[] opciones = new string[]{ ".-Iniciar Partida",".-Consultar resultado última partida", ".-Cerrar" };

@@ -33,7 +33,23 @@ namespace Damas
             }
 
         }
-        
+        //----método posiblemente malo
+        internal void ComprobarTablero()
+        {
+            bool movX=false;
+            bool movY=false;
+            string[] coordenadas= new string[fichas.Length];
+            for (int i=0;i<fichas.Length;i++) {
+
+                 movX = false;
+                 movY = false;
+                for (int j = 0; j < fichas.Length; j++) {
+                    
+                }
+                
+            }
+        }
+
         internal void DibujarTablero()
         {
             

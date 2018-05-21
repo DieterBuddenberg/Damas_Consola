@@ -1,21 +1,30 @@
-﻿namespace Damas
+﻿using System;
+
+namespace Damas
 {
     internal class Turno
     {
         private int nTurno;
         private string nombreJugador;
-        private string color;
+        private int idJugador;
 
-        public Turno(int nTurno, string nombre, string color)
+        public Turno(int nTurno, string nombreJugador, int idJugador)
         {
-            this.NTurno = nTurno;
-            this.NombreJugador = nombre;
-            this.Color = color;
+            this.nTurno = nTurno;
+            this.nombreJugador = nombreJugador;
+            this.idJugador = idJugador;
         }
+
+
 
         //---Propiedades/ get, set
         public int NTurno { get => nTurno; set => nTurno = value; }
         public string NombreJugador { get => nombreJugador; set => nombreJugador = value; }
-        public string Color { get => color; set => color = value; }
+        public int IdJugador { get => idJugador; set => idJugador = value; }
+
+        internal void ComprobarJugadasPosibles(Tablero tablero)
+        {
+            tablero.ComprobarTablero();
+        }
     }
 }
