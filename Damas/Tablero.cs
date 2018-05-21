@@ -11,15 +11,12 @@ namespace Damas
 
         public Tablero(int dimX, int dimY, Ficha[] fichas)
         {
-            this.SetDimX(dimX);
-            this.SetDimY(dimY);
+            this.DimX = dimX;
+            this.DimY = dimY;
             this.Fichas = fichas;
             casillas = new String[dimX, dimY];
         }
-
-       
-
-        internal void poblarTablero() {
+        internal void PoblarTablero() {
             //j=X   ,i = Y 
             for (int i = 0;i<dimY;i++) {
                 for (int j = 0; j < dimX; j++) {
@@ -29,15 +26,15 @@ namespace Damas
                 
             }
             
-            for (int k = 0; k < fichas.Length; k++)
+            for (int k = 0; k < Fichas.Length; k++)
             {
-                casillas[ fichas[k].GetPosX() - 1, fichas[k].GetPosY() - 1] =" "+fichas[k].GetTipo() + " ,"+fichas[k].GetColor();
+                casillas[ Fichas[k].PosX- 1, Fichas[k].PosY- 1] =" "+Fichas[k].Tipo+ " ,"+Fichas[k].Color;
 
             }
 
         }
         
-        internal void dibujarTablero()
+        internal void DibujarTablero()
         {
             
             //color 0 = negro   - color 7 = gris
@@ -118,32 +115,10 @@ namespace Damas
             
         }
 
-        internal Ficha[] Fichas
-        {
-            get { return fichas; }
-            set
-            {
-                fichas = value;
-            }
-        }
-        public int GetDimX()
-        {
-            return dimX;
-        }
+        //---Propiedades/ get, set
+        public int DimX { get => dimX; set => dimX = value; }
 
-        public void SetDimX(int value)
-        {
-            dimX = value;
-        }
-
-        public int GetDimY()
-        {
-            return dimY;
-        }
-
-        public void SetDimY(int value)
-        {
-            dimY = value;
-        }
+        public int DimY { get => dimY; set => dimY = value; }
+        public Ficha[] Fichas { get => fichas; set => fichas = value; }
     }
 }
