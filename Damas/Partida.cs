@@ -60,6 +60,9 @@ namespace Damas
             }
             
         }
+        internal void FinalizarPartida() {
+
+        }
         //---Propiedades/ get, set
         public Tablero Tablero { get => tablero; set => tablero = value; }
         public Jugador[] Jugadores { get => jugadores; set => jugadores = value; }
