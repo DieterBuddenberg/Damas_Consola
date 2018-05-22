@@ -8,6 +8,34 @@ namespace Damas
         private int dimY;
         private Ficha[] fichas;
         private String[,] casillas =new String[8,8];
+        private String[,] movimientos = new String[8, 4];
+
+        internal void Movimientos()
+        {
+            String[] colu = new String[] { "A", "B", "C", "D", "E", "F", "G", "H" };
+            int cont = 0;
+            for (int f = 0; f < 8; f++)
+            {
+                if (f % 2 == 0)
+                {
+                    cont = 1;
+                    for (int g = 0; g < 4; g++)
+                    {
+                        movimientos[f, g] = colu[f] + cont.ToString();
+                        cont = cont + 2;
+                    }
+                }
+                else
+                {
+                    cont = 2;
+                    for (int g = 0; g < 4; g++)
+                    {
+                        movimientos[f, g] = colu[f] + cont.ToString();
+                        cont = cont + 2;
+                    }
+                }
+            }
+        }
 
         public Tablero(int dimX, int dimY, Ficha[] fichas)
         {
@@ -130,6 +158,9 @@ namespace Damas
             }
             
         }
+
+
+
 
         //---Propiedades/ get, set
         public int DimX { get => dimX; set => dimX = value; }
