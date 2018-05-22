@@ -25,8 +25,9 @@ namespace Damas
             Console.WriteLine("Se ha iniciado una nueva partida");
             Tablero.PoblarTablero();
             Tablero.DibujarTablero();
-            Tablero.Movimientos();
+            Tablero.CalcularCasillasPosibles();
             turno = new Turno(nTurno,jugadores[0].Nombre,idJugador);
+            tablero.CalcularCasillasPosibles();
             Console.ReadKey();
         }
         internal void ContinuarPartida() {

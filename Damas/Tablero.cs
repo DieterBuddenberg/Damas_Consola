@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Damas
 {
@@ -7,35 +9,12 @@ namespace Damas
         private int dimX;
         private int dimY;
         private Ficha[] fichas;
-        private String[,] casillas =new String[8,8];
-        private String[,] movimientos = new String[8, 4];
+        private int contadorCasillasDisponibles;
+        private string[,] casillas =new string[8,8];
+        
+        List<string> casillasDisponibles = new List<string>();
 
-        internal void Movimientos()
-        {
-            String[] colu = new String[] { "A", "B", "C", "D", "E", "F", "G", "H" };
-            int cont = 0;
-            for (int f = 0; f < 8; f++)
-            {
-                if (f % 2 == 0)
-                {
-                    cont = 1;
-                    for (int g = 0; g < 4; g++)
-                    {
-                        movimientos[f, g] = colu[f] + cont.ToString();
-                        cont = cont + 2;
-                    }
-                }
-                else
-                {
-                    cont = 2;
-                    for (int g = 0; g < 4; g++)
-                    {
-                        movimientos[f, g] = colu[f] + cont.ToString();
-                        cont = cont + 2;
-                    }
-                }
-            }
-        }
+
 
         public Tablero(int dimX, int dimY, Ficha[] fichas)
         {
@@ -46,10 +25,13 @@ namespace Damas
         }
         internal void PoblarTablero() {
             //j=X   ,i = Y 
+            contadorCasillasDisponibles = 0;
             for (int i = 0;i<dimY;i++) {
                 for (int j = 0; j < dimX; j++) {
                     casillas[j, i] = "   ";
-                    
+                    contadorCasillasDisponibles=contadorCasillasDisponibles + 1;
+
+
                 }
                 
             }
@@ -57,6 +39,9 @@ namespace Damas
             for (int k = 0; k < Fichas.Length; k++)
             {
                 casillas[ Fichas[k].PosX- 1, Fichas[k].PosY- 1] =" "+Fichas[k].Tipo+ " ,"+Fichas[k].Color;
+                if (Fichas[k].PosX >= 0) {
+                    contadorCasillasDisponibles = contadorCasillasDisponibles - 1;
+                }
 
             }
 
@@ -158,7 +143,73 @@ namespace Damas
             }
             
         }
-
+        internal void CalcularCasillasPosibles()
+        {
+            string[,] casillasPosibles = new string[8, 4];
+            string[] listaAuxiliar = new string[32];
+            String[] colu = new String[] { "1", "2", "3", "4", "5", "6", "7", "8" };
+            int cont = 0;
+            for (int f = 0; f < 8; f++)
+            {
+                if (f % 2 == 0)
+                {
+                    cont = 1;
+                    for (int g = 0; g < 4; g++)
+                    {
+                        casillasPosibles[f, g] = colu[f] +","+ cont.ToString();
+                        cont = cont + 2;
+                    }
+                }
+                else
+                {
+                    cont = 2;
+                    for (int g = 0; g < 4; g++)
+                    {
+                        casillasPosibles[f, g] = colu[f] +","+cont.ToString();
+                        cont = cont + 2;
+                    }
+                }
+            }
+            //aquí se descartan las casillas ya ocupadas por fichas
+            
+            
+            int contX = 0;
+            for (int x = 0; x < 8; x++)
+            {
+                
+                for (int y = 0; y < 4; y++)
+                {
+                    listaAuxiliar[contX] = casillasPosibles[x, y];
+                    
+                    contX=contX + 1;
+                }
+            }
+            
+            
+            
+                for(int j = 0; j < listaAuxiliar.Length; j++) {
+                    string comparador = casillas[int.Parse(listaAuxiliar[j].Split(',')[0]) - 1, int.Parse(listaAuxiliar[j].Split(',')[1]) - 1].Split(',')[0].Trim();
+                    if (!comparador.Equals("o".Trim())&&!casillasDisponibles.Contains(listaAuxiliar[j]))
+                    {
+                        casillasDisponibles.Add(listaAuxiliar[j]);
+                        ;
+                    }//if
+                
+                }//for
+                    
+                        
+                            
+                        
+                   
+                
+            
+            
+           
+            for (int i = 0; i < casillasDisponibles.Count; i++) {
+                Console.WriteLine(casillasDisponibles[i]);
+            }
+            
+        }
 
 
 
