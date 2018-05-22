@@ -24,7 +24,7 @@ namespace Damas
 
         internal void ComprobarJugadasPosibles(Tablero tablero)
         {
-            tablero.ComprobarTablero();
+            tablero.CalcularCasillasPosibles();
         }
     }
 }

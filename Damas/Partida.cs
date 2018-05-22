@@ -24,21 +24,41 @@ namespace Damas
             int idJugador = 0;
             Console.WriteLine("Se ha iniciado una nueva partida");
             Tablero.PoblarTablero();
-            Tablero.DibujarTablero();
+            
             Tablero.CalcularCasillasPosibles();
             turno = new Turno(nTurno,jugadores[0].Nombre,idJugador);
-            tablero.CalcularCasillasPosibles();
+            
             Console.ReadKey();
         }
         internal void ContinuarPartida() {
+            
+            tablero.CalcularCasillasPosibles();
+            Console.Clear();
+            Tablero.DibujarTablero();
             Console.WriteLine("Turno " + turno.NTurno);
+            turno.NombreJugador = jugadores[turno.IdJugador].Nombre;
             Console.Write("Jugador: ");
             Console.ForegroundColor = (ConsoleColor) jugadores[turno.IdJugador].Color;
             Console.ForegroundColor = (ConsoleColor)15;
             Console.Write(turno.NombreJugador+"\n");
-            turno.ComprobarJugadasPosibles(tablero);
+            
+            Console.WriteLine("seleccione ficha a mover");
+            tablero.SeleccionarFicha(jugadores[turno.IdJugador].Color);
+            Tablero.BuscarFichaComida();
+            Tablero.PoblarTablero();
+            Tablero.DibujarTablero();
+            Console.WriteLine("Presione una tecla para continuar...");
             Console.ReadKey();
+            turno.NTurno = turno.NTurno+1;
+            if (turno.IdJugador == 0)
+            {
+                turno.IdJugador = 1;
+            }
+            else {
+                turno.IdJugador = 0;
 
+            }
+            
         }
         //---Propiedades/ get, set
         public Tablero Tablero { get => tablero; set => tablero = value; }
