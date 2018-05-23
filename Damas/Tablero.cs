@@ -64,6 +64,10 @@ namespace Damas
                     }
                 }
             }
+            //recarga datos ficha
+            for (int i = 0; i < fichas.Length; i++) {
+                fichas[i].FichaComida = "0,0";
+            }
         }
         internal void DibujarTablero()
         {

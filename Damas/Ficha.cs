@@ -40,9 +40,26 @@ namespace Damas
                 {
                     if (MovimientosPosibles[i].Split(',').Length>2)
                     {
-                        Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a "+letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                        opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                        this.ComerFicha(int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1, (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1));
+                        if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX)
+                        {
+                            Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                            this.ComerFicha(int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1, (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1));
+
+                        }//if
+                        else {
+                            if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1)<posX )
+                            {
+                            Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                                int auxX, auxY;
+                                auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) + 1;
+                                auxY = int.Parse(MovimientosPosibles[i].Split(',')[1])-1;
+                                this.ComerFicha(auxX,auxY);
+
+                            }//if
+                        }//else
+
                     }
                     else{
                         Console.WriteLine(contadorFichas + ") " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
