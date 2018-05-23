@@ -50,6 +50,8 @@ namespace Damas
                             partida.ContinuarPartida();
                         }
 
+                        Console.WriteLine("Ganador de la partida: Participante " + partida.Ganador.ToString() );
+
                         break;
                     case 2:
                         break;

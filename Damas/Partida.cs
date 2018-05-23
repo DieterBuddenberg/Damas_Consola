@@ -58,7 +58,8 @@ namespace Damas
                 turno.IdJugador = 0;
 
             }
-            FinalizarPartida();
+            ganador = FinalizarPartida();
+            
 
         }
         internal String FinalizarPartida() {
@@ -71,7 +72,7 @@ namespace Damas
                     vicB++;
                     if(vicB > 11)
                     {
-                        victoria = "15";
+                        victoria = jugadores[1].Nombre.ToString() ; // "15";
                         estado = false;
                     }
                 }
@@ -80,7 +81,7 @@ namespace Damas
                     vicR++;
                     if (vicR > 11)
                     {
-                        victoria = "4";
+                        victoria = jugadores[0].Nombre.ToString(); // "4";
                         estado = false;
                     }
                 }
