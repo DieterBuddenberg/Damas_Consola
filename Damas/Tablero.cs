@@ -235,7 +235,7 @@ namespace Damas
             
                 for(int j = 0; j < listaAuxiliar.Length; j++) {
                     string comparador = casillas[int.Parse(listaAuxiliar[j].Split(',')[0]) - 1, int.Parse(listaAuxiliar[j].Split(',')[1]) - 1].Split(',')[0].Trim();
-                    if (!comparador.Equals("o".Trim())&&!casillasDisponibles.Contains(listaAuxiliar[j]))
+                    if (!(comparador.Equals("o".Trim())|| comparador.Equals("¤".Trim())) &&!casillasDisponibles.Contains(listaAuxiliar[j]))
                     {
                         casillasDisponibles.Add(listaAuxiliar[j]);
                         

@@ -32,15 +32,18 @@ namespace Damas
 
             int contadorFichas = 1;
             List<string> opciones = new List<string>();
-
+            bool comprobarColor = false;
+            bool dama = false;
 
             for (int i = 0; i < MovimientosPosibles.Count; i++)
             {
                 if ( MovimientosPosibles.Count >= 1)
                 {
+                    comprobarColor = int.Parse(Color) == 15;
+                    dama = tipo.Trim().Equals("¤".Trim());
                     if (MovimientosPosibles[i].Split(',').Length>2)
                     {
-                        if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) > posY)
+                        if ((comprobarColor||dama) && (int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) > posY)
 
                         {
                             int auxX, auxY;
@@ -49,10 +52,10 @@ namespace Damas
 
                             Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                             opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1] + ";" + auxX + ":" + auxY);
-
+                            contadorFichas = contadorFichas + 1;
                         }//if
                         else {
-                            if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1)<posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) -1) > posY)
+                            if ((comprobarColor || dama) && (int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1)<posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) -1) > posY)
                             {
                                 int auxX, auxY;
                                 auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) + 1;
@@ -60,33 +63,33 @@ namespace Damas
 
                                 Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                             opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1] + ";" + auxX + ":" + auxY);
-
+                                contadorFichas = contadorFichas + 1;
 
                             }//if
                         }//else
                         //-----------------------------------------hacia abajo-------------------------------------------
-                        if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
+                        if ((!comprobarColor || dama) && (int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
 
                         {
                             int auxX = (int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1);
                             int auxY = (int.Parse(MovimientosPosibles[i].Split(',')[1]) + 1);
                             Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                             opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1] + ";" + auxX + ":" + auxY);
+                            contadorFichas = contadorFichas + 1;
 
-                           
 
                         }//if
                         else
                         {
-                            if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) < posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
+                            if ((!comprobarColor || dama) && (int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) < posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
                             {
                                 int auxX, auxY;
                                 auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) + 1;
                                 auxY = int.Parse(MovimientosPosibles[i].Split(',')[1]) + 1;
                                 Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                                 opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]+";"+auxX+":"+auxY);
-                                
-                                
+
+                                contadorFichas = contadorFichas + 1;
 
                             }//if
                         }//else
@@ -96,9 +99,9 @@ namespace Damas
                     else{
                         Console.WriteLine(contadorFichas + ") " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                         opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                        
+                        contadorFichas = contadorFichas + 1;
                     }
-                    contadorFichas = contadorFichas + 1;
+                    
 
                 }
             }
