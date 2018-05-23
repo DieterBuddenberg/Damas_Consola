@@ -43,20 +43,24 @@ namespace Damas
                         if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) > posY)
 
                         {
+                            int auxX, auxY;
+                            auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1;
+                            auxY = (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1);
+
                             Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                            this.ComerFicha(int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1, (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1));
+                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1] + ";" + auxX + ":" + auxY);
 
                         }//if
                         else {
                             if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1)<posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) -1) > posY)
                             {
-                            Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                                 int auxX, auxY;
                                 auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) + 1;
-                                auxY = int.Parse(MovimientosPosibles[i].Split(',')[1])-1;
-                                this.ComerFicha(auxX,auxY);
+                                auxY = int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1;
+
+                                Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1] + ";" + auxX + ":" + auxY);
+
 
                             }//if
                         }//else
@@ -64,23 +68,25 @@ namespace Damas
                         if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
 
                         {
+                            int auxX = (int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1);
+                            int auxY = (int.Parse(MovimientosPosibles[i].Split(',')[1]) + 1);
                             Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                            int auxX = (int.Parse(MovimientosPosibles[i].Split(',')[0])-1 );
-                            int auxY = (int.Parse(MovimientosPosibles[i].Split(',')[1])+1 );
-                            this.ComerFicha(auxX, auxY);
+                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1] + ";" + auxX + ":" + auxY);
+
+                           
 
                         }//if
                         else
                         {
                             if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) < posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
                             {
-                                Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
-                                opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                                 int auxX, auxY;
                                 auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) + 1;
-                                auxY = int.Parse(MovimientosPosibles[i].Split(',')[1]) +1;
-                                this.ComerFicha(auxX, auxY);
+                                auxY = int.Parse(MovimientosPosibles[i].Split(',')[1]) + 1;
+                                Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                                opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]+";"+auxX+":"+auxY);
+                                
+                                
 
                             }//if
                         }//else
@@ -100,7 +106,7 @@ namespace Damas
             string mensaje = null;
             int opcionSeleccionada = 0;
             bool estadoSeleccion = true;
-            while (estadoSeleccion)
+            while (estadoSeleccion&&opciones.Count>0)
             {
 
 
@@ -111,7 +117,11 @@ namespace Damas
                     mensaje = "ha seleccionado mover a la posicion " + opciones[opcionSeleccionada - 1].Split(';')[1];
                     posX =int.Parse(MovimientosPosibles[int.Parse(opciones[opcionSeleccionada - 1].Split(';')[0])].Split(',')[0]);
                     posY = int.Parse(MovimientosPosibles[int.Parse(opciones[opcionSeleccionada - 1].Split(';')[0])].Split(',')[1]);
-
+                    if (opciones[opcionSeleccionada - 1].Split(';').Length > 2) {
+                        int x = int.Parse(opciones[opcionSeleccionada - 1].Split(';')[2].Split(':')[0]);
+                        int y = int.Parse(opciones[opcionSeleccionada - 1].Split(';')[2].Split(':')[1]);
+                        this.ComerFicha(x,y);
+                    }
                     estadoSeleccion = false;
                     
                 }
@@ -126,7 +136,7 @@ namespace Damas
                 this.coronar();
             }
         }
-        internal void ComerFicha(int x,int y) {
+        internal void ComerFicha(int x,int y ) {
             fichaComida = x + "," + y;
 
         }
