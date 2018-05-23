@@ -40,7 +40,8 @@ namespace Damas
                 {
                     if (MovimientosPosibles[i].Split(',').Length>2)
                     {
-                        if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX)
+                        if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) > posY)
+
                         {
                             Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                             opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
@@ -48,7 +49,7 @@ namespace Damas
 
                         }//if
                         else {
-                            if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1)<posX )
+                            if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1)<posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) -1) > posY)
                             {
                             Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
                             opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
@@ -59,6 +60,31 @@ namespace Damas
 
                             }//if
                         }//else
+                        //-----------------------------------------hacia abajo-------------------------------------------
+                        if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) > posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
+
+                        {
+                            Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                            opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                            int auxX = (int.Parse(MovimientosPosibles[i].Split(',')[0])-1 );
+                            int auxY = (int.Parse(MovimientosPosibles[i].Split(',')[1])+1 );
+                            this.ComerFicha(auxX, auxY);
+
+                        }//if
+                        else
+                        {
+                            if ((int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1) < posX && (int.Parse(MovimientosPosibles[i].Split(',')[1]) - 1) < posY)
+                            {
+                                Console.WriteLine(contadorFichas + ") " + "Comer Moviendose a " + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                                opciones.Add(i + ";" + letras[int.Parse(MovimientosPosibles[i].Split(',')[0]) - 1] + MovimientosPosibles[i].Split(',')[1]);
+                                int auxX, auxY;
+                                auxX = int.Parse(MovimientosPosibles[i].Split(',')[0]) + 1;
+                                auxY = int.Parse(MovimientosPosibles[i].Split(',')[1]) +1;
+                                this.ComerFicha(auxX, auxY);
+
+                            }//if
+                        }//else
+                        //-----------------------------------------------------------------------------------------------
 
                     }
                     else{

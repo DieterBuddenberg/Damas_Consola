@@ -67,6 +67,7 @@ namespace Damas
             string[] opciones = new string[]{ ".-Iniciar Partida",".-Consultar resultado última partida", ".-Cerrar" };
             while (seleccion<0||seleccion>opciones.Length) {
                 for (int i = 0; i < opciones.Length; i++) {
+                   
                     Console.WriteLine((i + 1) + opciones[i]);
                 }
                 String seleccionAux = Console.ReadLine();

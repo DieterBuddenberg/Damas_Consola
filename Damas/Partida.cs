@@ -61,6 +61,7 @@ namespace Damas
             
         }
         internal void FinalizarPartida() {
+            
 
         }
         //---Propiedades/ get, set
