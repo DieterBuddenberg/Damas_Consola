@@ -31,7 +31,7 @@ namespace Damas
             Console.ReadKey();
         }
         internal void ContinuarPartida() {
-            
+
             tablero.CalcularCasillasPosibles();
             Console.Clear();
             Tablero.DibujarTablero();
@@ -58,12 +58,36 @@ namespace Damas
                 turno.IdJugador = 0;
 
             }
-            
-        }
-        internal void FinalizarPartida() {
-            
+            FinalizarPartida();
 
         }
+        internal String FinalizarPartida() {
+            int vicB = 0, vicR = 0;
+            String victoria = null;
+            for (int i = 0; i < Tablero.Fichas.Length; i++)
+            {
+                if (Tablero.Fichas[i].Color.Equals("15") && Tablero.Fichas[i].PosX.Equals(-1))
+                {
+                    vicB++;
+                    if(vicB > 11)
+                    {
+                        victoria = "15";
+                        estado = false;
+                    }
+                }
+                if(Tablero.Fichas[i].Color.Equals("4") && Tablero.Fichas[i].PosX.Equals(-1))
+                {
+                    vicR++;
+                    if (vicR > 11)
+                    {
+                        victoria = "4";
+                        estado = false;
+                    }
+                }
+            }
+            return victoria;
+        }
+
         //---Propiedades/ get, set
         public Tablero Tablero { get => tablero; set => tablero = value; }
         public Jugador[] Jugadores { get => jugadores; set => jugadores = value; }
