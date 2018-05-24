@@ -32,6 +32,7 @@ namespace Damas
         }
         internal void ContinuarPartida() {
 
+            ganador = FinalizarPartida();
             tablero.CalcularCasillasPosibles();
             Console.Clear();
             Tablero.DibujarTablero();
@@ -63,8 +64,44 @@ namespace Damas
 
         }
         internal String FinalizarPartida() {
+            int fichasMoviblesBlancas = 0;
+            int fichasMoviblesRojas = 0;
             int vicB = 0, vicR = 0;
             String victoria = null;
+            //----------victoria por movimientos---------------
+            for (int i = 0; i > tablero.Fichas.Length; i++) {
+                if (int.Parse(tablero.Fichas[i].Color) == 4) {
+
+                    if (tablero.Fichas[i].MovimientosPosibles.Count<1) {
+                        fichasMoviblesRojas=fichasMoviblesRojas+1;
+                        
+                    }
+
+                }
+                if (int.Parse(tablero.Fichas[i].Color) == 15)
+                {
+
+                    if (tablero.Fichas[i].MovimientosPosibles.Count < 1)
+                    {
+                        fichasMoviblesBlancas = fichasMoviblesBlancas + 1;
+
+                    }
+
+                }
+            }
+            if (fichasMoviblesBlancas < 1 || fichasMoviblesRojas <1) {
+                //15
+                victoria = jugadores[1].Nombre.ToString();
+                estado = false;
+                if (fichasMoviblesBlancas < 1) {
+                    //4
+                    victoria = jugadores[0].Nombre.ToString();
+
+                }
+
+            }
+            //--------------------
+           
             for (int i = 0; i < Tablero.Fichas.Length; i++)
             {
                 if (Tablero.Fichas[i].Color.Equals("15") && Tablero.Fichas[i].PosX.Equals(-1))
