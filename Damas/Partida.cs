@@ -69,7 +69,7 @@ namespace Damas
             int vicB = 0, vicR = 0;
             String victoria = null;
             //----------victoria por movimientos---------------
-            for (int i = 0; i > tablero.Fichas.Length; i++) {
+            for (int i = 0; i < tablero.Fichas.Length; i++) {
                 if (int.Parse(tablero.Fichas[i].Color) == 4) {
 
                     if (tablero.Fichas[i].MovimientosPosibles.Count<1) {

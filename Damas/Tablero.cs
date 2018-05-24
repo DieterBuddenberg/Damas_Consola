@@ -259,7 +259,7 @@ namespace Damas
                     bool comprobarColor = fichas[i].Color.Equals(fichas[j].Color);
                     if (!comprobarColor) {
                         bool comprobarPosicionVerticalDerecha = ((fichas[i].PosX + 1 == fichas[j].PosX) && (fichas[i].PosY + 1 == fichas[j].PosY));
-                        if (comprobarPosicionVerticalDerecha) {
+                        if (comprobarPosicionVerticalDerecha && (int.Parse(fichas[i].Color) == 15 || !fichas[i].Tipo.Trim().Equals("o"))) {
                        
                             for (int l = 0; l < casillasDisponibles.Count; l++)
                             {
@@ -271,7 +271,7 @@ namespace Damas
                         }//if
                         //vertical izquierda arriba
                         bool comprobarPosicionVerticalIzquierda = ((fichas[i].PosX - 1 == fichas[j].PosX) && (fichas[i].PosY + 1 == fichas[j].PosY));
-                        if (comprobarPosicionVerticalIzquierda)
+                        if (comprobarPosicionVerticalIzquierda && (int.Parse(fichas[i].Color) == 15 || !fichas[i].Tipo.Trim().Equals("o")))
                         {
 
                             for (int l = 0; l < casillasDisponibles.Count; l++)
@@ -285,7 +285,7 @@ namespace Damas
                         }//if
                         //vertical izquierda abajo
                         bool comprobarPosicionVerticalIzquierdaAbajo = ((fichas[i].PosX - 1 == fichas[j].PosX) && (fichas[i].PosY - 1 == fichas[j].PosY));
-                        if (comprobarPosicionVerticalIzquierdaAbajo)
+                        if (comprobarPosicionVerticalIzquierdaAbajo && (!(int.Parse(fichas[i].Color) == 15) || !fichas[i].Tipo.Trim().Equals("o")))
                         {
 
                             for (int l = 0; l < casillasDisponibles.Count; l++)
@@ -299,7 +299,7 @@ namespace Damas
                         }//if
                         //vertical derecha abajo
                         bool comprobarPosicionVerticalDerechaAbajo = ((fichas[i].PosX + 1 == fichas[j].PosX) && (fichas[i].PosY - 1 == fichas[j].PosY));
-                        if (comprobarPosicionVerticalDerechaAbajo)
+                        if (comprobarPosicionVerticalDerechaAbajo && (!(int.Parse(fichas[i].Color) == 15) || !fichas[i].Tipo.Trim().Equals("o")))
                         {
 
                             for (int l = 0; l < casillasDisponibles.Count; l++)
