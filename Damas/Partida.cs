@@ -72,7 +72,7 @@ namespace Damas
             for (int i = 0; i < tablero.Fichas.Length; i++) {
                 if (int.Parse(tablero.Fichas[i].Color) == 4) {
 
-                    if (tablero.Fichas[i].MovimientosPosibles.Count<1) {
+                    if (tablero.Fichas[i].MovimientosPosibles.Count>=1) {
                         fichasMoviblesRojas=fichasMoviblesRojas+1;
                         
                     }
@@ -81,8 +81,9 @@ namespace Damas
                 if (int.Parse(tablero.Fichas[i].Color) == 15)
                 {
 
-                    if (tablero.Fichas[i].MovimientosPosibles.Count < 1)
+                    if (tablero.Fichas[i].MovimientosPosibles.Count >=1)
                     {
+
                         fichasMoviblesBlancas = fichasMoviblesBlancas + 1;
 
                     }
@@ -91,11 +92,11 @@ namespace Damas
             }
             if (fichasMoviblesBlancas < 1 || fichasMoviblesRojas <1) {
                 //15
-                victoria = jugadores[1].Nombre.ToString();
+                victoria = jugadores[0].Nombre.ToString();
                 estado = false;
                 if (fichasMoviblesBlancas < 1) {
                     //4
-                    victoria = jugadores[0].Nombre.ToString();
+                    victoria = jugadores[1].Nombre.ToString();
 
                 }
 
